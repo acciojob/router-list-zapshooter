@@ -4,14 +4,15 @@ import { useParams } from "react-router-dom";
 const items = [
   { id: 1, name: "Item 1", description: "Description for Item 1" },
   { id: 2, name: "Item 2", description: "Description for Item 2" },
-  { id: 3, name: "Item 3", description: "Description for Item 3" }
+  { id: 3, name: "Item 3", description: "Description for Item 3" },
 ];
 
-const ItemDetail = () => {
+function ItemDetail() {
   const { id } = useParams();
-  const item = items.find(i => i.id === Number(id));
+  const itemId = parseInt(id, 10);
+  const item = items.find((item) => item.id === itemId);
 
-  if (!item) return <div>Not found</div>;
+  if (!item) return <p>Item not found</p>;
 
   return (
     <div>
@@ -19,6 +20,6 @@ const ItemDetail = () => {
       <p>{item.description}</p>
     </div>
   );
-};
+}
 
 export default ItemDetail;
